@@ -95,7 +95,8 @@
       
 
 <span class="returntype"><a href="https://api.dart.dev/stable/2.13.4/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../sodium/Sodium-class.html">Sodium</a></span>&gt;</span></span>
-<span class="name ">initFromSodiumFFI</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="initFromSodiumFFI-param-sodium"><span class="type-annotation">LibSodiumFFI</span> <span class="parameter-name">sodium</span></span></li>
+<span class="name ">initFromSodiumFFI</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="initFromSodiumFFI-param-sodium"><span class="type-annotation">LibSodiumFFI</span> <span class="parameter-name">sodium</span>, </span></li>
+<li><span class="parameter" id="initFromSodiumFFI-param-initNative">{<span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.4/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initNative</span> = <span class="default-value">true</span>}</span></li>
 </ol>)
 
       
@@ -110,15 +111,23 @@ interface, which is the raw dart interface to access the C library.</p>
 <p>Please note that <code>LibSodiumFFI</code> is not documented, as it is an auto
 generated binding, which simply mimics the C interface in dart, as
 required by <code>dart:ffi</code>.</p>
+<p>By default, the native library automatically get initialized. If you do
+not want to initialize it, set <code>initNative</code> to false. This can be useful
+if you need multiple instances of <a href="../../sodium/Sodium-class.html">Sodium</a>.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;Sodium&gt; initFromSodiumFFI(LibSodiumFFI sodium) {
-  final result = sodium.sodium_init();
-  SodiumException.checkSucceededInt(result);
+  <pre class="language-dart"><code class="language-dart">static Future&lt;Sodium&gt; initFromSodiumFFI(
+  LibSodiumFFI sodium, {
+  bool initNative = true,
+}) {
+  if (initNative) {
+    final result = sodium.sodium_init();
+    SodiumException.checkSucceededInt(result);
+  }
   return Future.value(SodiumFFI(sodium));
 }</code></pre>
 </section>
@@ -134,7 +143,7 @@ required by <code>dart:ffi</code>.</p>
 <footer>
   <span class="no-break">
     sodium
-      1.0.0
+      1.1.0
   </span>
 
   

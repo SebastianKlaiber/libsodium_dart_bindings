@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no">
+  <meta name="description" content="API docs for the split method from the SecureKeySplit extension, for the Dart programming language.">
+  <title>split method - SecureKeySplit extension - sodium library - Dart API</title>
+
+
+  
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,300;0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="../../static-assets/github.css">
+  <link rel="stylesheet" href="../../static-assets/styles.css">
+  <link rel="icon" href="../../static-assets/favicon.png">
+
+  
+</head>
+
+
+<body data-base-href="../../"
+      data-using-base-href="false">
+
+<div id="overlay-under-drawer"></div>
+
+<header id="title">
+  <button id="sidenav-left-toggle" type="button">&nbsp;</button>
+  <ol class="breadcrumbs gt-separated dark hidden-xs">
+    <li><a href="../../index.html">sodium</a></li>
+    <li><a href="../../sodium/sodium-library.html">sodium</a></li>
+    <li><a href="../../sodium/SecureKeySplit.html">SecureKeySplit</a></li>
+    <li class="self-crumb">split method</li>
+  </ol>
+  <div class="self-name">split</div>
+  <form class="search navbar-right" role="search">
+    <input type="text" id="search-box" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<main>
+
+
+  <div id="dartdoc-sidebar-left" class="sidebar sidebar-offcanvas-left">
+    <header id="header-search-sidebar" class="hidden-l">
+  <form class="search-sidebar" role="search">
+    <input type="text" id="search-sidebar" autocomplete="off" disabled class="form-control typeahead" placeholder="Loading search...">
+  </form>
+</header>
+
+<ol class="breadcrumbs gt-separated dark hidden-l" id="sidebar-nav">
+  <li><a href="../../index.html">sodium</a></li>
+  <li><a href="../../sodium/sodium-library.html">sodium</a></li>
+  <li><a href="../../sodium/SecureKeySplit.html">SecureKeySplit</a></li>
+  <li class="self-crumb">split method</li>
+</ol>
+
+
+    <h5>SecureKeySplit extension</h5>
+    <ol>
+
+
+
+
+
+    <li class="section-title"><a href="../../sodium/SecureKeySplit.html#instance-methods">Methods</a></li>
+    <li><a href="../../sodium/SecureKeySplit/split.html">split</a></li>
+
+
+
+
+</ol>
+
+  </div><!--/.sidebar-offcanvas-->
+
+  <div id="dartdoc-main-content" class="main-content">
+      <div>
+<h1><span class="kind-method">split</span> method 
+    <a href="https://dart.dev/null-safety" class="feature feature-null-safety" title="Supports the null safety language feature.">Null safety</a>
+</h1></div>
+
+    <section class="multi-line-signature">
+      
+
+<span class="returntype"><a href="https://api.dart.dev/stable/2.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../sodium/SecureKey-class.html">SecureKey</a></span>&gt;</span></span>
+<span class="name ">split</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="split-param-sodium"><span class="type-annotation"><a href="../../sodium/Sodium-class.html">Sodium</a></span> <span class="parameter-name">sodium</span>, </span></li>
+<li><span class="parameter" id="split-param-lengths"><span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.4/dart-core/List-class.html">List</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.13.4/dart-core/int-class.html">int</a></span>&gt;</span></span> <span class="parameter-name">lengths</span></span></li>
+</ol>)
+
+      
+
+    </section>
+    
+<section class="desc markdown">
+  <p>Creates multiple secure keys of different <code>lengths</code> from a single key.
+It is especially useful for using pwHash to generate enough bytes for
+multiple keys.</p>
+<p>The returned keys are independent copies of portions of the original key,
+with the same kind of memory protection. The copying is done on secure,
+native memory controlled by <code>sodium</code>, without exposing the data to dart
+when using the dart VM.</p>
+</section>
+
+
+    
+<section class="summary source-code" id="source">
+  <h2><span>Implementation</span></h2>
+  <pre class="language-dart"><code class="language-dart">List&lt;SecureKey&gt; split(Sodium sodium, List&lt;int&gt; lengths) =&gt; runUnlockedSync(
+      (originalKeyData) {
+        var sum = 0;
+        final originalLength = originalKeyData.length;
+        RangeError.checkValueInInterval(lengths.length, 1, originalLength);
+        for (final length in lengths) {
+          RangeError.checkValueInInterval(length, 1, originalLength);
+          RangeError.checkValidRange(sum, sum + length, originalLength);
+          sum += length;
+        }
+
+        final keys = &lt;SecureKey&gt;[];
+        try {
+          var start = 0;
+          for (final length in lengths) {
+            final splitKey = SecureKey(sodium, length)
+              ..runUnlockedSync(
+                (splitKeyData) =&gt; splitKeyData.setRange(
+                  0,
+                  length,
+                  originalKeyData,
+                  start,
+                ),
+                writable: true,
+              );
+            keys.add(splitKey);
+            start += length;
+          }
+        } catch (e) {
+          for (final key in keys) {
+            key.dispose();
+          }
+          rethrow;
+        }
+
+        return keys;
+      },
+    );</code></pre>
+</section>
+
+
+  </div> <!-- /.main-content -->
+
+  <div id="dartdoc-sidebar-right" class="sidebar sidebar-offcanvas-right">
+  </div><!--/.sidebar-offcanvas-->
+
+</main>
+
+<footer>
+  <span class="no-break">
+    sodium
+      1.1.0
+  </span>
+
+  
+</footer>
+
+
+<script src="../../static-assets/highlight.pack.js"></script>
+<script src="../../static-assets/script.js"></script>
+
+
+
+</body>
+
+</html>
+

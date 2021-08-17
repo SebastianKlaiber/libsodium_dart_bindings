@@ -89,6 +89,7 @@
 
   <li class="section-title"><a href="../sodium/sodium-library.html#extension">Extensions</a></li>
   <li><a href="../sodium/Int8ListX.html">Int8ListX</a></li>
+  <li><a href="../sodium/SecureKeySplit.html">SecureKeySplit</a></li>
   <li><a href="../sodium/StringX.html">StringX</a></li>
   <li><a href="../sodium/Uint8ListX.html">Uint8ListX</a></li>
 
@@ -147,6 +148,19 @@ convenience.</p>
 </section>
 
 
+    <section>
+      <dl class="dl-horizontal">
+
+
+
+
+        <dt>Available Extensions</dt>
+        <dd><ul class="comma-separated clazz-relationships">
+          <li><a href="../sodium/SecureKeySplit.html">SecureKeySplit</a></li>
+        </ul></dd>
+
+      </dl>
+    </section>
 
     <section class="summary offset-anchor" id="constructors">
       <h2>Constructors</h2>
@@ -164,6 +178,13 @@ convenience.</p>
         </dt>
         <dd>
           Allocates new memory for a <a href="../sodium/SecureKey-class.html">SecureKey</a> and copies the data from <code>data</code>. <a href="../sodium/SecureKey/SecureKey.fromList.html">[...]</a>
+          <div class="constructor-modifier features">factory</div>
+        </dd>
+        <dt id="SecureKey.fromNativeHandle" class="callable">
+          <span class="name"><a href="../sodium/SecureKey/SecureKey.fromNativeHandle.html">SecureKey.fromNativeHandle</a></span><span class="signature">(<span class="parameter" id="fromNativeHandle-param-sodium"><span class="type-annotation"><a href="../sodium/Sodium-class.html">Sodium</a></span> <span class="parameter-name">sodium</span>, </span><span class="parameter" id="fromNativeHandle-param-nativeHandle"><span class="type-annotation">dynamic</span> <span class="parameter-name">nativeHandle</span></span>)</span>
+        </dt>
+        <dd>
+          Creates a secure key from a previously extracted <a href="../sodium/SecureKey/nativeHandle.html">SecureKey.nativeHandle</a>. <a href="../sodium/SecureKey/SecureKey.fromNativeHandle.html">[...]</a>
           <div class="constructor-modifier features">factory</div>
         </dd>
         <dt id="SecureKey.random" class="callable">
@@ -200,6 +221,17 @@ random data. <a href="../sodium/SecureKey/SecureKey.random.html">[...]</a>
 <dd>
   Returns the length of the key in bytes, without unlocking it. 
   <div class="features">read-only</div>
+
+</dd>
+
+        <dt id="nativeHandle" class="property">
+  <span class="name"><a href="../sodium/SecureKey/nativeHandle.html">nativeHandle</a></span>
+  <span class="signature">&#8594; dynamic</span> 
+
+</dt>
+<dd>
+  Returns a native handle to the secure key. <a href="../sodium/SecureKey/nativeHandle.html">[...]</a>
+  <div class="features">@<a href="https://pub.dev/documentation/meta/1.7.0/meta/experimental-constant.html">experimental</a>, read-only</div>
 
 </dd>
 
@@ -344,6 +376,7 @@ random data. <a href="../sodium/SecureKey/SecureKey.random.html">[...]</a>
     <li class="section-title"><a href="../sodium/SecureKey-class.html#constructors">Constructors</a></li>
     <li><a href="../sodium/SecureKey/SecureKey.html">SecureKey</a></li>
     <li><a href="../sodium/SecureKey/SecureKey.fromList.html">fromList</a></li>
+    <li><a href="../sodium/SecureKey/SecureKey.fromNativeHandle.html">fromNativeHandle</a></li>
     <li><a href="../sodium/SecureKey/SecureKey.random.html">random</a></li>
 
 
@@ -352,6 +385,7 @@ random data. <a href="../sodium/SecureKey/SecureKey.random.html">[...]</a>
     </li>
     <li class="inherited"><a href="https://api.dart.dev/stable/2.13.4/dart-core/Object/hashCode.html">hashCode</a></li>
     <li><a href="../sodium/SecureKey/length.html">length</a></li>
+    <li><a href="../sodium/SecureKey/nativeHandle.html">nativeHandle</a></li>
     <li class="inherited"><a href="https://api.dart.dev/stable/2.13.4/dart-core/Object/runtimeType.html">runtimeType</a></li>
 
     <li class="section-title"><a href="../sodium/SecureKey-class.html#instance-methods">Methods</a></li>
@@ -378,7 +412,7 @@ random data. <a href="../sodium/SecureKey/SecureKey.random.html">[...]</a>
 <footer>
   <span class="no-break">
     sodium
-      1.0.0
+      1.1.0
   </span>
 
   
