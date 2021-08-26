@@ -96,7 +96,7 @@
 
 <span class="returntype"><a href="https://api.dart.dev/stable/2.13.4/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="../../sodium/Sodium-class.html">Sodium</a></span>&gt;</span></span>
 <span class="name ">init</span>(<wbr><ol class="parameter-list"><li><span class="parameter" id="init-param-libsodium"><span class="type-annotation">dynamic</span> <span class="parameter-name">libsodium</span>, </span></li>
-<li><span class="parameter" id="init-param-initNative">{<span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.4/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initNative</span> = <span class="default-value">true</span>}</span></li>
+<li><span class="parameter" id="init-param-initNative">{<span>@<a href="https://api.dart.dev/stable/2.13.4/dart-core/Deprecated-class.html">Deprecated</a>(&#39;initNative is deprecated and will be ignored.&#39;)</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.4/dart-core/bool-class.html">bool</a></span> <span class="parameter-name">initNative</span> = <span class="default-value">true</span>}</span></li>
 </ol>)
 
       
@@ -108,14 +108,17 @@
 <p>The <code>libsodium</code> parameter must be a loaded
 <code>[lib]sodium.[so|dll|dylib|a|lib|js]</code>- depending on your platform. Please
 refer to the README for more details on loading the library.</p>
-<p>The <code>initNative</code> parameter has no effect on the web.</p>
 </section>
 
 
     
 <section class="summary source-code" id="source">
   <h2><span>Implementation</span></h2>
-  <pre class="language-dart"><code class="language-dart">static Future&lt;Sodium&gt; init(dynamic libsodium, {bool initNative = true}) =&gt;
+  <pre class="language-dart"><code class="language-dart">static Future&lt;Sodium&gt; init(
+  dynamic libsodium, {
+  @Deprecated(&#39;initNative is deprecated and will be ignored.&#39;)
+      bool initNative = true,
+}) =&gt;
     initFromSodiumJS(libsodium as LibSodiumJS);</code></pre>
 </section>
 
@@ -130,7 +133,7 @@ refer to the README for more details on loading the library.</p>
 <footer>
   <span class="no-break">
     sodium
-      1.1.0
+      1.1.1
   </span>
 
   
