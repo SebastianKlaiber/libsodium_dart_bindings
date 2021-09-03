@@ -310,6 +310,32 @@ Please refer to that documentation for more details about these APIs.</p>
 
 </dd>
 
+        <dt id="skToPk" class="callable">
+  <span class="name"><a href="../sodium/Sign/skToPk.html">skToPk</a></span><span class="signature">(<wbr><span class="parameter" id="skToPk-param-secretKey"><span class="type-annotation"><a href="../sodium/SecureKey-class.html">SecureKey</a></span> <span class="parameter-name">secretKey</span></span>)
+    <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.13.4/dart-typed_data/Uint8List-class.html">Uint8List</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Provides crypto_sign_ed25519_sk_to_pk. <a href="../sodium/Sign/skToPk.html">[...]</a>
+  
+
+</dd>
+
+        <dt id="skToSeed" class="callable">
+  <span class="name"><a href="../sodium/Sign/skToSeed.html">skToSeed</a></span><span class="signature">(<wbr><span class="parameter" id="skToSeed-param-secretKey"><span class="type-annotation"><a href="../sodium/SecureKey-class.html">SecureKey</a></span> <span class="parameter-name">secretKey</span></span>)
+    <span class="returntype parameter">&#8594; <a href="../sodium/SecureKey-class.html">SecureKey</a></span>
+  </span>
+  
+
+</dt>
+<dd>
+  Provides crypto_sign_ed25519_sk_to_seed. <a href="../sodium/Sign/skToSeed.html">[...]</a>
+  
+
+</dd>
+
         <dt id="stream" class="callable">
   <span class="name"><a href="../sodium/Sign/stream.html">stream</a></span><span class="signature">(<wbr><span class="parameter" id="stream-param-messages">{<span>required</span> <span class="type-annotation"><a href="https://api.dart.dev/stable/2.13.4/dart-async/Stream-class.html">Stream</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.13.4/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span> <span class="parameter-name">messages</span>, </span><span class="parameter" id="stream-param-secretKey"><span>required</span> <span class="type-annotation"><a href="../sodium/SecureKey-class.html">SecureKey</a></span> <span class="parameter-name">secretKey</span>}</span>)
     <span class="returntype parameter">&#8594; <a href="https://api.dart.dev/stable/2.13.4/dart-async/Future-class.html">Future</a><span class="signature">&lt;<wbr><span class="type-parameter"><a href="https://api.dart.dev/stable/2.13.4/dart-typed_data/Uint8List-class.html">Uint8List</a></span>&gt;</span></span>
@@ -413,6 +439,8 @@ Please refer to that documentation for more details about these APIs.</p>
     <li class="inherited"><a href="https://api.dart.dev/stable/2.13.4/dart-core/Object/noSuchMethod.html">noSuchMethod</a></li>
     <li><a href="../sodium/Sign/open.html">open</a></li>
     <li><a href="../sodium/Sign/seedKeyPair.html">seedKeyPair</a></li>
+    <li><a href="../sodium/Sign/skToPk.html">skToPk</a></li>
+    <li><a href="../sodium/Sign/skToSeed.html">skToSeed</a></li>
     <li><a href="../sodium/Sign/stream.html">stream</a></li>
     <li class="inherited"><a href="https://api.dart.dev/stable/2.13.4/dart-core/Object/toString.html">toString</a></li>
     <li><a href="../sodium/Sign/verifyDetached.html">verifyDetached</a></li>
@@ -433,7 +461,7 @@ Please refer to that documentation for more details about these APIs.</p>
 <footer>
   <span class="no-break">
     sodium
-      1.1.1
+      1.1.2
   </span>
 
   
